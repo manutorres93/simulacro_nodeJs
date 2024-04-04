@@ -1,0 +1,60 @@
+1. npm init -y
+2. npm i express mongodb mongoose
+3. npm i -g nodemon
+4. npm i body-parser
+5. npm i --save bcrypt jsonwebtoken passport passport-jwt
+6. Carpeta src a nivel de node_modules con : config(database.js), controller(xxxController.js), 
+middleware(auth.js), models(xxxModel.js), routes(index.js-routes.js),services(verificar necesidad)
+7. A nivel de esta carpeta src index.js
+
+DATABASE.js
+1. constante mongoose e inicializaciòn de variable
+2.Conexión a la bd:
+    - mongoose.model 'estudiantes',require('../models/estudianteModel'.schema): estudiante es 
+    el nombre de la coleccion en la base de datos
+    - await mongoose.connect('mongodb+srv://manutorres9312:Wwl9ejoe1FicGqTV@db-ejemplo-01.elrgq55.mongodb.net/');
+    : string de la base de datos
+
+3. Funcion que inicializa la data de la base de datos (opcional, puede no estar):
+    - elimina todo lo que hay en la base de datos
+    - agrega algo nuevo a la base de datos
+    - mensaje de succes
+    - manejo de errores
+
+4. Exportar el funcion de conectar a la base de datos para que este disponible
+
+CONTROLADOR: ENTIDADcONTROLLER.js
+
+1. Inicialización de variables:
+    const Student = require('../models/studentModel');
+    const bcrypt= require('bcrypt');
+    const jwt= require('jsonwebtoken');
+    const jwt_secret ="password" --->aqui le pongo la contraseña que quiera usar
+
+2. Paso a definir la lògica de negocio en la variable studentControler, es decir, todas las operaciones
+del CRUD y demás
+
+3. Ver como se hace la respuesta en el getbyid sin el status y en el post con el status. 
+Son dos formas de hacerlo no más, dejo las dos formas para verlas
+
+MODELO: entidadModel.js
+1.const Student= mongoose.model('estudiantes', studentsSchema); estudiantes es el nombre de la coleccion
+2. Creo el esquema de la bd
+3. lo exporto
+
+routes
+1. ruta protegida que requiere autenticaciòn:
+    -const auth= require('../middleware/auth'); --> autorizaciòn del token
+
+
+INDEX.js
+
+Autenticacion:
+
+
+
+PROBAR:
+
+1. node index.js
+
+
