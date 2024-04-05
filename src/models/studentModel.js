@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
+
+//Definición del esquema del estudiante.  
+//Describe la estrutura de los documentos de la colección
 const studentsSchema= new mongoose.Schema({
     name: String,
     identification: String,

@@ -63,6 +63,7 @@ LOGIN
 
 
 PROBAR:
+Estando en la carpeta que tiene index.js
 
 1. node index.js
 
