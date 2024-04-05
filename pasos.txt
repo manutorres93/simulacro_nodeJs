@@ -26,7 +26,6 @@ middleware(auth.js), models(xxxModel.js), routes(index.js-routes.js),services(ve
 
 ---------MODELO
 
-1. Creo las constantes e inicialización de variables
 
 
 
@@ -44,21 +43,28 @@ del CRUD y demás
 3. Ver como se hace la respuesta en el getbyid sin el status y en el post con el status. 
 Son dos formas de hacerlo no más, dejo las dos formas para verlas
 
-MODELO: entidadModel.js
+
+
+
+----------MODELO: entidadModel.js
 1.const Student= mongoose.model('estudiantes', studentsSchema); estudiantes es el nombre de la coleccion
 2. Creo el esquema de la bd
 3. lo exporto
 
-routes
+----------routes
 1. ruta protegida que requiere autenticaciòn:
     -const auth= require('../middleware/auth'); --> autorizaciòn del token
 
 
-INDEX.js
+----------INDEX.js
 
-Autenticacion:
+----------Autenticacion:
+1. Creo las constantes e inicialización de variables
+2. Creo constante para la contraseña pero esto es cuando necesito 
+encriptar la base de datos (para el filtro no se hará)
+3. ....
 
-LOGIN
+
 
 
 
