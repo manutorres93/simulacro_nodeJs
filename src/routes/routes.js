@@ -2,8 +2,8 @@ const express= require('express');
 const router= express.Router();
 const studenController = require('../controller/studentController');
 /* Ruta protegida */
-const auth= require('../middleware/auth');
-router.get('/api/v1/students', auth.authenticate(), studenController.getAllStudents);
+/* const auth= require('../middleware/auth');
+router.get('/api/v1/students', auth.authenticate(), studenController.getAllStudents); */
 
 router.get('/api/v1/students', studenController.getAllStudents);
 router.get('/api/v1/students/:id', studenController.getStudentById);

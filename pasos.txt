@@ -1,60 +1,71 @@
-1. npm init -y
-2. npm i express mongodb mongoose
-3. npm i -g nodemon
-4. npm i body-parser
-5. npm i --save bcrypt jsonwebtoken passport passport-jwt
-6. Carpeta src a nivel de node_modules con : config(database.js), controller(xxxController.js), 
-middleware(auth.js), models(xxxModel.js), routes(index.js-routes.js),services(verificar necesidad)
-7. A nivel de esta carpeta src index.js
+1. npm i -g @nestjs/cli
+2. nest new nest-app (nest-app es el nombre de lo que quiero crear)
+  - selecciono npm
+3.cd nest-app
+4. npm i mongoose @nestjs/mongoose
+5. creo la carpeta de la entiendad que vaya a usar segun lo requiera: task en este caso
+6. nest generate module task
+7. nest generate controller task
+8. nest generate service task
 
-DATABASE.js
-1. constante mongoose e inicializaciòn de variable
-2.Conexión a la bd:
-    - mongoose.model 'estudiantes',require('../models/estudianteModel'.schema): estudiante es 
-    el nombre de la coleccion en la base de datos
-    - await mongoose.connect('mongodb+srv://manutorres9312:Wwl9ejoe1FicGqTV@db-ejemplo-01.elrgq55.mongodb.net/');
-    : string de la base de datos
+NOTA: si traigo el archivo de un repo que tiene ignore de los node node_modules
+debo ejecutar inicialmente el 1 y el 4 para que corra.
 
-3. Funcion que inicializa la data de la base de datos (opcional, puede no estar):
-    - elimina todo lo que hay en la base de datos
-    - agrega algo nuevo a la base de datos
-    - mensaje de succes
-    - manejo de errores
+---ENTIDAD---
+9. Creo la entidad a mano:
+  - creo archivo entidad.entity.ts
+  - hago imports:
+	import {Prop, Schema, SchemaFactory} from 	"@nestjs/mongoose";
+	import { Document } from "mongoose";
+  - hago el Schema:
+	Decorador Schema.  Decorador Prop() siempre 	encima de cada una de las claves del schema
+  - No olvidar que la clase extends Document
+  - exportar la constante
 
-4. Exportar el funcion de conectar a la base de datos para que este disponible
+---APP Module ---
+10. Importo :
 
-CONTROLADOR: ENTIDADcONTROLLER.js
+import { TaskModule } from './task/task.module'; --> modulo de la entidad
+import {MongooseModule} from "@nestjs/mongoose";-->modulo de mongoose, esto es para la conexion
 
-1. Inicialización de variables:
-    const Student = require('../models/studentModel');
-    const bcrypt= require('bcrypt');
-    const jwt= require('jsonwebtoken');
-    const jwt_secret ="password" --->aqui le pongo la contraseña que quiera usar
+11. en los imports de @Module agrego TaskModule, y el MongooseModule:
+imports: [TaskModule, MongooseModule.forRoot
+('mongodb+srv://manutorres9312:Wwl9ejoe1FicGqTV@db-ejemplo-01.elrgq55.mongodb.net/test')],
 
-2. Paso a definir la lògica de negocio en la variable studentControler, es decir, todas las operaciones
-del CRUD y demás
+Aqui tener en cuenta que el profe decia que despues de test va /nombrecoleccion pero eso arroja error.
 
-3. Ver como se hace la respuesta en el getbyid sin el status y en el post con el status. 
-Son dos formas de hacerlo no más, dejo las dos formas para verlas
+---ENTIDAD (task) Module ---
 
-MODELO: entidadModel.js
-1.const Student= mongoose.model('estudiantes', studentsSchema); estudiantes es el nombre de la coleccion
-2. Creo el esquema de la bd
-3. lo exporto
+12. Hago importaciones: Module, MongooseModule, y del controlador, servicio y entidad
 
-routes
-1. ruta protegida que requiere autenticaciòn:
-    -const auth= require('../middleware/auth'); --> autorizaciòn del token
+13. Creo el imports con la estructura: 
+
+imports: [MongooseModule.forFeature([
+    {
+      name: Task.name,
+      schema: TaskSchema
+    }
+  ])],
+
+  Esa estructura siempre va a ser igual (name, schema)
+
+----ENTIDAD (task) Service ---
+
+14. Hago los imports
+
+15. agrego el constructor
+
+16. Agrego toda la logica de negocio (las funciones que necesito)
+
+---- ENTIDAD (task) Controller --
+
+17. traigo de services la logica. recordar que lo que va en () 
+de los decoradores me da la ruta bajo la cual los llamo
 
 
-INDEX.js
-
-Autenticacion:
 
 
-
-PROBAR:
-
-1. node index.js
-
-
+Iniciar la aplicación
+npm run start -->inicia la aplicacion
+o usamos npm run start:dev a nivel de toda la carpeta, es decir, a nivel de
+carpeta que guarda src, node_modules, etc.

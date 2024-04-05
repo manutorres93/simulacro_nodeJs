@@ -19,7 +19,7 @@ app.use(bodyParser.json())
 // Cuando extended está establecido en true, utiliza la biblioteca qs para analizar los cuerpos de las solicitudes entrantes, lo que permite analizar objetos anidados y matrices. 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.use(auth.initialize())
+//app.use(auth.initialize())
 
 // Configura las rutas
 app.use('/', routes);
