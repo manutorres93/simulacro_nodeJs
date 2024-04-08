@@ -4,6 +4,9 @@ const connectDB = require('../config/database');
 const routes = require('../routes/routes');
 const auth = require("../middleware/auth");
 
+const cors = require('cors')
+
+
 const app = express();
 const port = 3000;
 
@@ -21,7 +24,17 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 //app.use(auth.initialize())
 
+const corsOptions = {
+    methods: ['GET']
+}
+
+app.use(cors(corsOptions))
+
 // Configura las rutas
 app.use('/', routes);
+
+
+
+
 
 app.listen(port, () => console.log(`Listening at http://localhost:${port}`));

@@ -32,8 +32,8 @@ const inicializarData= async () =>{
                 password: '123'
             },
             {
-                name:'Miguel Angel',
-                identification: '1152467',
+                name:'Valentina',
+                identification: '121474',
                 age: 25,
                 password: '456'
             },

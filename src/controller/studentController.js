@@ -110,7 +110,7 @@ const studentControler= {
             const student = await Student.find({identification:identification});
             
             if (!student) {
-                return res.status(400).json({message: "Invalid username or password"});     
+                return res.status(400).json({message: "Estudiante no existe"});     
              }
 
             /* Sugerencia: aparentemente student si no es igual, retorna un arreglo vacio por lo cual
@@ -122,11 +122,19 @@ const studentControler= {
                 }
             
             */
+
+                console.log(password);
+                console.log(student[0].password);
  
              const isPasswordValid = await bcrypt.compare(password, student[0].password);
+             console.log("hola"+password+"hola");
+             console.log("chao"+student[0].password+"chao");
+             console.log(typeof password);
+             console.log(typeof (student[0].password));
+             console.log(isPasswordValid);
  
              if (!isPasswordValid) {
-                 return res.status(400).json({message: "Invalid username or password"});     
+                 return res.status(400).json({message: "La contraseña no es válida"});     
              }
              
              const token = jwt.sign({studentid: student.id }, jwt_secret, {
